@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/Documents/NetBeansProjects/PruebaCRUD_1/src/java/Models/validateUser.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/PruebaCRUD_1/src/java/Controller/addController.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/PruebaCRUD_1/src/java/Controller/deleteController.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/PruebaCRUD_1/src/java/Controller/editController.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/PruebaCRUD_1/src/java/Controller/HomeController.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/PruebaCRUD_1/src/java/Models/Conexion.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/PruebaCRUD_1/web/WEB-INF/jsp/BD/home.jsp</file>
+            <file>file:/D:/Documents/NetBeansProjects/PruebaCRUD_1/web/WEB-INF/jsp/BD/add.jsp</file>
+            <file>file:/D:/Documents/NetBeansProjects/PruebaCRUD_1/src/java/Models/Usuario.java</file>
+        </group>
+    </open-files>
+</project-private>

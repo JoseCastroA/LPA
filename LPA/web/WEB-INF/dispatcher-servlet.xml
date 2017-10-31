@@ -35,6 +35,10 @@
                 <prop key="editNovedades.htm">editNewsController</prop>
                 <prop key="delete.htm">deleteNewsController</prop>
                 <prop key="previewNovedades.htm">previewNewsController</prop>
+                <prop key="home.htm">homeController</prop>
+                <prop key="add.htm">addController</prop>
+                <prop key="edit.htm">editController</prop>
+                <prop key="delete.htm">deleteController</prop>
             </props>
         </property>
     </bean>
@@ -65,7 +69,11 @@
     <bean name="editNewsController" class="Controller.editNewsController" /> 
     <bean name="previewNewsController" class="Controller.previewNewsController" />
     <bean name="deleteNewsController" class="Controller.deleteNewsController"/>
-    
+    <bean name="homeController" class="Controller.HomeController" />
+    <bean name="addController" class="Controller.addController" />
+    <bean name="editController" class="Controller.editController" /> 
+    <bean name="deleteController" class="Controller.deleteController" />
+
     <mvc:resources mapping="/resources/**" location="/resources/"/>
     <mvc:annotation-driven/> 
 </beans>

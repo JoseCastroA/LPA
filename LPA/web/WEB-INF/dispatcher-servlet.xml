@@ -26,11 +26,15 @@
                 <prop key="TipoLineaAdd.htm">TipoLineaAddController</prop>
                 <prop key="TipoLineaEdit.htm">TipoLineaEditController</prop>
                 <prop key="TipoLineaDelete.htm">TipoLineaDeleteController</prop>
-                
                 <prop key="TipoProductoHome.htm">TipoProductoHomeController</prop>
                 <prop key="TipoProductoAdd.htm">TipoProductoAddController</prop>
                 <prop key="TipoProductoEdit.htm">TipoProductoEditController</prop>
                 <prop key="TipoProductoDelete.htm">TipoProductoDeleteController</prop>
+                <prop key="admNovedades.htm">admNewsController</prop>
+                <prop key="addNovedades.htm">addNewsController</prop>
+                <prop key="editNovedades.htm">editNewsController</prop>
+                <prop key="delete.htm">deleteNewsController</prop>
+                <prop key="previewNovedades.htm">previewNewsController</prop>
             </props>
         </property>
     </bean>
@@ -56,6 +60,11 @@
     <bean name="TipoProductoAddController" class="Controller.TipoProductoAddController" />
     <bean name="TipoProductoEditController" class="Controller.TipoProductoEditController" /> 
     <bean name="TipoProductoDeleteController" class="Controller.TipoProductoDeleteController" />
+    <bean name="admNewsController" class="Controller.admNewsController" />
+    <bean name="addNewsController" class="Controller.addNewsController" />
+    <bean name="editNewsController" class="Controller.editNewsController" /> 
+    <bean name="previewNewsController" class="Controller.previewNewsController" />
+    <bean name="deleteNewsController" class="Controller.deleteNewsController"/>
     
     <mvc:resources mapping="/resources/**" location="/resources/"/>
     <mvc:annotation-driven/> 

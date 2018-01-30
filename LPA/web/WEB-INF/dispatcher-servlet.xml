@@ -74,6 +74,12 @@
     <bean name="editController" class="Controller.editController" /> 
     <bean name="deleteController" class="Controller.deleteController" />
 
+    <bean name="AdmBuysController" class="Controller.AdmBuysController" />
+    <bean name="AddBuyController" class="Controller.AddBuyController" />
+    <bean name="EditBuysController" class="Controller.EditBuysController" /> 
+    <bean name="ViewBuysController" class="Controller.ViewBuysController" />
+    <bean name="DeleteBuysController" class="Controller.DeleteBuysController">
+
     <mvc:resources mapping="/resources/**" location="/resources/"/>
     <mvc:annotation-driven/> 
 </beans>

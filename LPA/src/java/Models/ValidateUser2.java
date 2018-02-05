@@ -19,12 +19,12 @@ public class ValidateUser2 implements Validator {
 
     @Override
     public boolean supports(Class<?> type) {
-        return Novedad.class.isAssignableFrom(type);
+        return Producto.class.isAssignableFrom(type);
     }
 
     @Override
     public void validate(Object o, Errors errors) {
-        Novedad novedad = (Novedad) o;
+       Producto novedad =(Producto) o;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "Nombre", "required.Nombre", "Error: El campo 'Nombre novedad' es obligatorio");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "Informacion", "required.Informacion", "Error: El campo 'Informacion' es obligatorio");
     }

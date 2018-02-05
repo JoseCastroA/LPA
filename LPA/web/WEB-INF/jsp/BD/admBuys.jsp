@@ -20,14 +20,14 @@
             <div class="row">
                 <h1>Administración de Compras</h1>
                  <ol class="breadcrumb">
-                <li class="active">Home</li>
+                <li class="active">Administrar carrito</li>
             </ol>
                 <div class="panel panel-primary">
                 <div class="panel-heading">Administrar Compras</div>
                 <div class="panel-body">
                 <p>
                     
-                    <a href="viewBuys.htm" class="btn btn-success">Añadir</a>
+                    <a href="viewBuys.htm" class="btn btn-success">Añadir otro producto</a>
                 </p>
                 <table class="table table-bordered table-striped table-hover">
                     <thead>
@@ -46,23 +46,25 @@
                                     <c:out value="${dato.nombre}"/>
                                 </td>
                                 <td>
-                                    <c:out value="${dato.imagen}"/>
+                                    <c:out value="${dato.precio}"/>
                                 </td>
                                 <td>
-                                   	<c:out value="${dato.fecha}"/>
+                                   	<c:out value="${dato.cantidad}"/>
                                 </td>
                                 <td>
-                                   	<c:out value="${dato.fecha}"/>
+                                   	<c:out value="${dato.total}"/>
                                 </td>
                                 <td>
-                                	<a href="previewNovedades.htm?id=${dato.id}" class="glyphicon glyphicon-search"></a>
-                                    <a href="editNovedades.htm?id=${dato.id}" class="glyphicon glyphicon-pencil"></a>
-                                    <a href="deleteNovedades.htm?id=${dato.id}" class="glyphicon glyphicon-trash"></a>
+                                    <a href="editBuys.htm?id=${dato.id}" class="glyphicon glyphicon-pencil"></a>
+                                    <a href="COMPRA_delete.htm?id=${dato.id}" class="glyphicon glyphicon-trash"></a>
                                 </td>
                             </tr>
                         </c:forEach>
                     </tbody>
+                    
                 </table>
+                 <a href="COMPRA_liquidar.htm"  style="right: -88%;position:  relative;" class="btn btn-success">Añadir otro producto</a> 
+                
                 </div>
                 </div>
             </div>

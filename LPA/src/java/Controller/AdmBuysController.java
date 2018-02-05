@@ -42,13 +42,12 @@ public class AdmBuysController {
     public ModelAndView homeBD(){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("BD/admBuys");
-        String sql = "select * from novedades order by id asc;";
+        String sql = "select * from compra_temporal order by id asc;";
         List response;
         response = this.jdbcTemplate.queryForList(sql);
         mav.addObject("Datos", response);
         return mav;
     } 
-
 
     
 }

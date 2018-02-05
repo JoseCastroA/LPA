@@ -13,26 +13,27 @@
 <html>
     <head>
         <script type="text/javascript" src="jquery-1.2.6.min.js"></script>
+        <script type="text/javascript" src="resources/Js/Javascriptprueba.js"  ></script>
         <meta charset="UTF-8">
         <title>LPA TEMPLATE</title>
        <link href="<c:url value="/resources/Css/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>" rel="stylesheet"/>
     </head>
     <body>
         <div class="container">
-        <h1>Administración de compras</h1>
-            <ol class="breadcrumb">
-                <li><a href="admBuys.htm">Home</a></li>
-                <li class="active">Añadir</li>
+        <h1>Añadir un producto</h1>
+             <ol class="breadcrumb">
+                <li><a href="admBuys.htm">Administrar Carrito</a></li>
+                <li class="active">Añadir producto</li>
             </ol>
             <div class="panel panel-primary">
                 <div class="panel-heading">Añadir producto</div>
                 <div class="panel-body">
-                    <form:form method="POST" commandName="Compra" >
+                    <form:form action="COMPRA_add.htm" method="post">
                         <form:errors path="*" element="div" cssClass="alert alert-danger" />
                         <c:forEach items="${Datos}" var="dato">
                         <table width="100%" border="0">
                           <tbody items="${Datos}" var="dato">
-                             <input type="hidden" path="Id" var="Id" value="${dato.id}"/>
+                          <input type="hidden" id="Id" name="Id" value="${dato.id}"/>
                             
                             <tr>
                                 
@@ -47,13 +48,13 @@
                                 <p id="Informacion" style="vertical-align:text-top;width:100%">
                                     <c:out value="Nombre: "/>
                             		<c:out value="${dato.nombre}"/>
-                                         <input type="hidden" path="Nombre" var="Nombre" value="${dato.nombre}"/>
+                                        <input type="hidden" id="Nombre" name="Nombre" value="${dato.nombre}"/>
                             
                         		</p>    
                                 <p id="Fecha">
                             		<c:out value="Precio: "/>
                                         <c:out value="${dato.precio}"/>
-                                         <input type="hidden" path="Precio" var="Precio" value="${dato.precio}"/>
+                                         <input type="hidden" id="Precio" name="Precio"  value="${dato.precio}"/>
                              
                         		</p>                                  
                               	<p id="NombreNovedad">
@@ -63,11 +64,11 @@
                                 <p id="NombreNovedad">
                                         <c:out value="Disponibles: "/>
                             		<c:out value="${dato.disponibles}"/>
-                                        <input type="hidden" path="Disponibles" var="Disponibles" value="${dato.disponibles}"/>
+                                        <input type="hidden" id="Disponibles" name="Disponibles" value="${dato.disponibles}"/>
                         		</p>
                                         
                                         <p > 
-                                            <c:out value="Cantidad:  "/><input type="text" path="Entrada" cssClass="form-control" style="width:20%"/></p>
+                                            <textarea class="form-control" name="Cantidad" id="Cantidad" placeholder="Cantidad a comprar..."></textarea>
                               </td>
                             </tr>
                           </tbody>

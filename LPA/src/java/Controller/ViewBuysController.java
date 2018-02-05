@@ -6,7 +6,7 @@
 package Controller;
 
 import Models.Conexion;
-import Models.Novedad;
+import Models.Producto;
 import Models.ValidateUser2;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,17 +35,18 @@ public class ViewBuysController {
         Conexion conn = new Conexion();
         this.jdbcTemplate = new JdbcTemplate(conn.conectar());;
     }
-    @RequestMapping(value = "viewBuys.htm", method = RequestMethod.GET)
-    public ModelAndView previewBD(HttpServletRequest request){
+    @RequestMapping(value = "viewBuys.htm")
+    public ModelAndView previewView(){
         ModelAndView mav = new ModelAndView();
-        int id = Integer.parseInt(request.getParameter("id"));
         mav.setViewName("BD/viewBuys");
-        String sql = "select * from novedades where id='" + id + "';";
+        String sql = "select * from productos";
         List response;
         response = this.jdbcTemplate.queryForList(sql);
         mav.addObject("Datos", response);
         return mav;
     } 
+
+
 
 }
 

@@ -30,34 +30,25 @@
                     <a href="viewBuys.htm" class="btn btn-success">Añadir</a>
                 </p>
                 <table class="table table-bordered table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Nombre </th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Total</th>
-                            <th>Opciones</th>
-                        </tr>
-                    </thead>
                     <tbody>
-                        <c:forEach items="${Datos}" var="dato">
+                        <c:forEach items="3" var="dato">
                             <tr>
                                 <td>
-                                    <c:out value="${dato.nombre}"/>
+                                    <c:out value="nombre"/>
                                 </td>
                                 <td>
-                                    <c:out value="${dato.imagen}"/>
+                                    <c:out value="precio"/>
                                 </td>
                                 <td>
-                                   	<c:out value="${dato.fecha}"/>
+                                   	<c:out value="cantidad"/>
                                 </td>
                                 <td>
-                                   	<c:out value="${dato.fecha}"/>
+                                   	<c:out value="jasd"/>
                                 </td>
                                 <td>
-                                	<a href="previewNovedades.htm?id=${dato.id}" class="glyphicon glyphicon-search"></a>
-                                    <a href="editNovedades.htm?id=${dato.id}" class="glyphicon glyphicon-pencil"></a>
-                                    <a href="deleteNovedades.htm?id=${dato.id}" class="glyphicon glyphicon-trash"></a>
+                                	<a href="previewNovedades.htm?id=1" class="glyphicon glyphicon-search"></a>
+                                    <a href="editNovedades.htm?id=2" class="glyphicon glyphicon-pencil"></a>
+                                    <a href="deleteNovedades.htm?id=2" class="glyphicon glyphicon-trash"></a>
                                 </td>
                             </tr>
                         </c:forEach>

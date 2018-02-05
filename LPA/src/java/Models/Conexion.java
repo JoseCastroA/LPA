@@ -10,15 +10,16 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 /**
  *
+ * @author Camilo
  */
 public class Conexion {
     
     public DriverManagerDataSource conectar(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/CRUD");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/Proyecto");
         dataSource.setUsername("postgres");
-        dataSource.setPassword("1234");
+        dataSource.setPassword("camilo587");
         return dataSource;
     }
 }

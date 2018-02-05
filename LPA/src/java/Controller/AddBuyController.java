@@ -2,7 +2,7 @@ package Controller;
 
 import Models.Conexion;
 import Models.FileModel;
-import Models.Novedad;
+import Models.Producto;
 import Models.ValidateUser2;
 import com.beingjavaguys.model.UploadedFile;
 import com.beingjavaguys.validator.FileValidator;
@@ -23,6 +23,7 @@ import org.springframework.dao.support.DaoSupport;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
@@ -30,6 +31,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -61,31 +63,36 @@ public class AddBuyController {
         String sql = "select * from productos where id='" + id + "';";
         List response;
         response = this.jdbcTemplateUser.queryForList(sql);
-//        mav.addObject("Usuario", new Novedad(id, u.getNombre(),u.getInformacion(),u.getImagen(),u.getPrecio()));
+//        mav.addObject("Usuario", newProductod(id, u.getNombre(),u.getInformacion(),u.getImagen(),u.getPrecio()));
         mav.addObject("Datos", response);
         return mav;
     } 
-
-
-    @RequestMapping(value = "addBuy.htm", method = RequestMethod.POST)
-    public ModelAndView add(@ModelAttribute("Compra") Novedad u, BindingResult result, SessionStatus status) {
-        //this.validarusuario.validate(u, result);
-//        if (result.hasErrors()) {
-//             ModelAndView mav = new ModelAndView();
-//            mav.setViewName("BD/addBuy?id=1");
-//            mav.addObject("Compra", u);
-//            return mav;
-//            
-//        } else {
-            System.out.println("lalalalalalala "+u.getNombre());
-             this.jdbcTemplateUser.update("insert into compra_temporal ( id, nombre,precio,total_producto) values (?,?,?,?)", u.getId(),u.getNombre(),u.getPrecio(),u.getPrecio());
-            System.out.println(u.getId());
-             return new ModelAndView("redirect:/admBuys.htm");
-            
-           
-       // }
+    
+    
+       @RequestMapping(value = "/COMPRA_add.htm", method = RequestMethod.POST)
+    public  ModelAndView agregarCompra(@RequestParam("Cantidad") int cantidad,@RequestParam("Id") int id,@RequestParam("Nombre") String nombre,@RequestParam("Precio") int precio) {
+          String sql = "select * from compra_temporal where id='" + id + "';";
+          List response;
+          response = this.jdbcTemplateUser.queryForList(sql);
+           System.out.println("La respuesta es: "+ response);
+          if (response.isEmpty()) {
+              Producto compra = new Producto(id, nombre, precio,"No", "No",0, cantidad);
+           compra.agregarCompraProducto(id, nombre, precio, cantidad);
+          return new ModelAndView("redirect:/admBuys.htm");
+          }
+          else {
+              Producto compra = new Producto(id, nombre, precio,"No", "No",0, cantidad);
+           compra.sumarCompraProducto(id, nombre, precio, cantidad);
+          return new ModelAndView("redirect:/admBuys.htm");
+          }
     }
     
-    
+        @RequestMapping(value = "/COMPRA_liquidar.htm",method = {RequestMethod.POST, RequestMethod.GET})
+        public  ModelAndView liquidarCompra() {
+         Producto compra = new Producto();
+         compra.liquidarCompra();
+          
+          return new ModelAndView("redirect:/addBuy.htm?id=1");
+    }
     
 }

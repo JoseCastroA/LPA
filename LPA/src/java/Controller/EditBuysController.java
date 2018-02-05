@@ -6,10 +6,11 @@
 package Controller;
 
 import Models.Conexion;
-import Models.Novedad;
+import Models.Producto;
 import Models.ValidateUser2;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,6 +20,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,45 +40,29 @@ public class EditBuysController {
         this.jdbcTemplate = new JdbcTemplate(conn.conectar());
     }
 
+   
     @RequestMapping(value = "editBuys.htm", method = RequestMethod.GET)
-    public ModelAndView edit(HttpServletRequest request) {
+    public ModelAndView viewBD(HttpServletRequest request){
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("BD/editBuys");
         int id = Integer.parseInt(request.getParameter("id"));
-        Novedad u = this.selectUsuario(id);
-     //   mav.addObject("Usuario", new Novedad(id, u.getNombre(),u.getInformacion(),u.getImagen(),u.getPrecio()));
+        mav.setViewName("BD/editBuys");
+        String sql = "select p.*,c.cantidad from productos p inner join compra_temporal c on p.id = c.id where c.id='" + id + "';";
+        List response;
+        response = this.jdbcTemplate.queryForList(sql);
+//        mav.addObject("Usuario", newProductod(id, u.getNombre(),u.getInformacion(),u.getImagen(),u.getPrecio()));
+        mav.addObject("Datos", response);
+        String sql2 = "select cantidad from compra_temporal where id='" + id + "';";
+        List response2;
+        response2 = this.jdbcTemplate.queryForList(sql);
+        mav.addObject("Datos", response2);
         return mav;
-    }
-    
-    @RequestMapping(value = "editBuys.htm", method = RequestMethod.POST)
-    public ModelAndView edit(@ModelAttribute("Usuario") Novedad u, BindingResult result, SessionStatus status, HttpServletRequest request){
-        this.validar.validate(u, result);
-        if(result.hasErrors()){
-            ModelAndView mav=new ModelAndView();
-            int id= Integer.parseInt(request.getParameter("id"));
-            Novedad datos = this.selectUsuario(id);
-            mav.setViewName("BD/editBuys");
-            mav.addObject("Usuario",u);
-            return mav;
-        }else{
-            int id = Integer.parseInt(request.getParameter("id"));
-            this.jdbcTemplate.update("update novedades set nombre=? ,informacion=? ,fecha=NOW() where id=?;",u.getNombre(),u.getInformacion(),id);
-            return new ModelAndView("redirect:/admBuys.htm");
-        }
+    } 
+
+       @RequestMapping(value = "/COMPRA_edit.htm", method = RequestMethod.POST)
+    public  ModelAndView agregarCompra(@RequestParam("Cantidad") int cantidad,@RequestParam("Id") int id) {
+         Producto compra = new Producto(id, "No",0,"No", "No",0, cantidad);
+           compra.editarCompraProducto(id, "No",0, cantidad);
+          return new ModelAndView("redirect:/admBuys.htm");
     }
 
-    public Novedad selectUsuario(int id) {
-        final Novedad u = new Novedad();
-        String query = "select * from novedades where id='" + id + "';";
-        return (Novedad) jdbcTemplate.query(query, new ResultSetExtractor<Novedad>() {
-            @Override
-            public Novedad extractData(ResultSet rs) throws SQLException, DataAccessException {
-                if (rs.next()) {
-                    u.setNombre(rs.getString("nombre"));
-                    u.setInformacion(rs.getString("informacion"));
-                }
-                return u;
-            }
-        });
-    }
 }
